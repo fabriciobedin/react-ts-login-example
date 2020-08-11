@@ -29,39 +29,6 @@ export const Content = styled.div`
       margin-bottom: 24px;
     }
 
-    input {
-      background: #eee;
-      border-radius: 10px;
-      border: 2px solid #eee;
-      padding: 12px;
-      width: 100%;
-      color: #777;
-
-      &::placeholder {
-        color: #777;
-      }
-
-      & + input {
-        margin-top: 8px;
-      }
-    }
-
-    button {
-      background: #ed6707;
-      border-radius: 10px;
-      color: #fff;
-      border: 0;
-      padding: 0 16px;
-      height: 50px;
-      width: 100%;
-      margin-top: 16px;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background: #e04113;
-      }
-    }
-
     a {
       color: #888;
       display: block;
@@ -85,7 +52,7 @@ export const Content = styled.div`
     align-items: center;
 
     svg {
-      margin-right: 16px;
+      margin-right: 10px;
     }
 
     &:hover {
