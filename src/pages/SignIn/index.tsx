@@ -13,7 +13,7 @@ const SignIn: React.FC = () => (
     <Content>
       <img src={logo} alt="UPF" />
       <form>
-        <h1>LogIn</h1>
+        <h1>Faça seu login</h1>
         <Input name="email" icon={FiMail} placeholder="E-mail" />
         <Input
           name="password"
