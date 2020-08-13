@@ -10,7 +10,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import logo from '../../assets/logo_upf.png';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 interface SignInFormData {
   email: string;

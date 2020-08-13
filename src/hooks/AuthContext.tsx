@@ -13,6 +13,7 @@ interface SignInCredentials {
 interface AuthContextData {
   user: object;
   signIn(credentials: SignInCredentials): Promise<void>;
+  signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -32,8 +33,13 @@ const AuthProvider: React.FC = ({ children }) => {
     setAuth({ user: email, token: password });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@upf-eventos:user');
+    setAuth({} as AuthState);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: auth, signIn }}>
+    <AuthContext.Provider value={{ user: auth, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
