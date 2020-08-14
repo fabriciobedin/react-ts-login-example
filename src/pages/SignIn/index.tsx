@@ -10,7 +10,8 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import logo from '../../assets/logo_upf.png';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 interface SignInFormData {
   email: string;
@@ -21,6 +22,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -36,17 +38,25 @@ const SignIn: React.FC = () => {
           abortEarly: false
         });
 
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           formRef.current?.setErrors(getValidationErrors(err));
+          return;
         }
+
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação!',
+          description:
+            'Por favor, verifique se digitou suas credenciais corretamente.'
+        });
       }
     },
-    [signIn]
+    [addToast, signIn]
   );
 
   return (
